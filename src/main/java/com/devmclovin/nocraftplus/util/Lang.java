@@ -1,6 +1,6 @@
-package net.corruptmc.nocraftplus.util;
+package com.devmclovin.nocraftplus.util;
 
-import net.corruptmc.nocraftplus.NoCraftPlugin;
+import com.devmclovin.nocraftplus.NoCraftPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 

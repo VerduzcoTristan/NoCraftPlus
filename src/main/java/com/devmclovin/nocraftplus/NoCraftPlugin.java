@@ -1,10 +1,11 @@
-package net.corruptmc.nocraftplus;
+package com.devmclovin.nocraftplus;
 
+import com.devmclovin.nocraftplus.command.*;
 import net.corruptmc.nocraftplus.command.*;
-import net.corruptmc.nocraftplus.listeners.CraftListener;
-import net.corruptmc.nocraftplus.util.Lang;
-import net.corruptmc.nocraftplus.util.Metrics;
-import net.corruptmc.nocraftplus.util.UpdateChecker;
+import com.devmclovin.nocraftplus.listeners.CraftListener;
+import com.devmclovin.nocraftplus.util.Lang;
+import com.devmclovin.nocraftplus.util.Metrics;
+import com.devmclovin.nocraftplus.util.UpdateChecker;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;

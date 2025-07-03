@@ -1,10 +1,9 @@
-package net.corruptmc.nocraftplus.command;
+package com.devmclovin.nocraftplus.command;
 
-import net.corruptmc.nocraftplus.util.Lang;
+import com.devmclovin.nocraftplus.util.Lang;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 

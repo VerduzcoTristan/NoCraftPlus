@@ -1,0 +1,18 @@
+#Material names can be found here:
+#https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+#CaSe SeNsItIvE
+disabled_items:
+  - HOPPER
+  - TNT
+#Enable blacklist mode (false = whitelist)
+blacklist: true
+#Send a message when a player attempts to craft a blocked item
+enable_alert: true
+#Whether or not you want the plugin to
+#Tell you on login when there is an update available
+check_for_updates: true
+#Whether or not you want the plugin to send bStats info.
+#Please consider leaving this true!
+enable_metrics: true
+#Do not change
+config_version: 7

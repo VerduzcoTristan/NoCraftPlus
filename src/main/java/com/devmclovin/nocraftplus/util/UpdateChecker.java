@@ -1,11 +1,10 @@
-package net.corruptmc.nocraftplus.util;
+package com.devmclovin.nocraftplus.util;
 
-import net.corruptmc.nocraftplus.NoCraftPlugin;
-import net.corruptmc.nocraftplus.listeners.UpdateListener;
+import com.devmclovin.nocraftplus.NoCraftPlugin;
+import com.devmclovin.nocraftplus.listeners.UpdateListener;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Consumer;
 
 import java.io.IOException;

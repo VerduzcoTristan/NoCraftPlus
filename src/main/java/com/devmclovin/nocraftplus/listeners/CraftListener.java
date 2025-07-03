@@ -1,8 +1,8 @@
-package net.corruptmc.nocraftplus.listeners;
+package com.devmclovin.nocraftplus.listeners;
 
-import net.corruptmc.nocraftplus.NoCraftPlugin;
-import net.corruptmc.nocraftplus.events.BlockedCraftingEvent;
-import net.corruptmc.nocraftplus.util.Lang;
+import com.devmclovin.nocraftplus.NoCraftPlugin;
+import com.devmclovin.nocraftplus.events.BlockedCraftingEvent;
+import com.devmclovin.nocraftplus.util.Lang;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

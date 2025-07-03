@@ -1,6 +1,6 @@
-package net.corruptmc.nocraftplus.listeners;
+package com.devmclovin.nocraftplus.listeners;
 
-import net.corruptmc.nocraftplus.util.Lang;
+import com.devmclovin.nocraftplus.util.Lang;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

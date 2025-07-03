@@ -1,4 +1,4 @@
-package net.corruptmc.nocraftplus.events;
+package com.devmclovin.nocraftplus.events;
 
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;

@@ -1,4 +1,4 @@
-package net.corruptmc.nocraftplus.command;
+package com.devmclovin.nocraftplus.command;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

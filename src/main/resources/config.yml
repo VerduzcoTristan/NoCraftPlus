@@ -14,5 +14,11 @@ check_for_updates: true
 #Whether or not you want the plugin to send bStats info.
 #Please consider leaving this true!
 enable_metrics: true
-#Do not change
-config_version: 7
+#TODO Change old logic. Check for updated field instead.
+#config_version: 7
+potions:
+  # Options: whitelist, blacklist, disable
+  mode: blacklist
+  list:
+    - "HEAL"
+    - "REGEN"

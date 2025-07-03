@@ -1,10 +1,10 @@
-package net.corruptmc.nocraftplus.util;
+package com.devmclovin.nocraftplus.util;
 
+import com.devmclovin.nocraftplus.NoCraftPlugin;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
-import net.corruptmc.nocraftplus.NoCraftPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;

@@ -1,8 +1,7 @@
-package net.corruptmc.nocraftplus.command;
+package com.devmclovin.nocraftplus.command;
 
-import net.corruptmc.nocraftplus.NoCraftPlugin;
-import net.corruptmc.nocraftplus.util.Lang;
-import net.corruptmc.nocraftplus.util.Metrics;
+import com.devmclovin.nocraftplus.NoCraftPlugin;
+import com.devmclovin.nocraftplus.util.Lang;
 import org.bukkit.command.CommandSender;
 
 public class CmdReload implements CommandInterface
