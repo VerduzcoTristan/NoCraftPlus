@@ -6,12 +6,12 @@
 
     <groupId>dev.mclovin</groupId>
     <artifactId>nocraftplus</artifactId>
-    <version>2.2.0</version>
+    <version>3.0.0</version>
     <name>NoCraftPlus</name>
 
     <properties>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <java.version>21</java.version>
     </properties>
 

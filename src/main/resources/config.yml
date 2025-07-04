@@ -1,5 +1,5 @@
 #Material names can be found here:
-#https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+#https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html#enum-constant-summary
 #CaSe SeNsItIvE
 disabled_items:
   - HOPPER

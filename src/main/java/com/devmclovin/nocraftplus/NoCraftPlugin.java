@@ -1,7 +1,7 @@
 package com.devmclovin.nocraftplus;
 
 import com.devmclovin.nocraftplus.command.*;
-import net.corruptmc.nocraftplus.command.*;
+import com.devmclovin.nocraftplus.command.*;
 import com.devmclovin.nocraftplus.listeners.CraftListener;
 import com.devmclovin.nocraftplus.util.Lang;
 import com.devmclovin.nocraftplus.util.Metrics;
