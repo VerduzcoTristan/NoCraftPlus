@@ -11,7 +11,7 @@ public class BlockedCraftingEvent extends Event implements Cancellable
     private PrepareItemCraftEvent craftEvent;
     private boolean cancelled;
 
-    //Event for when a item crafting is blocked.
+    //Event for when an item crafting is blocked.
     public BlockedCraftingEvent(PrepareItemCraftEvent craftEvent)
     {
         this.craftEvent = craftEvent;
@@ -34,7 +34,6 @@ public class BlockedCraftingEvent extends Event implements Cancellable
     public HandlerList getHandlers() {
         return handlers;
     }
-
     public static HandlerList getHandlerList() {
         return handlers;
     }

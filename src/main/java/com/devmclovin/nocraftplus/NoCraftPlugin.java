@@ -1,12 +1,10 @@
 package com.devmclovin.nocraftplus;
 
 import com.devmclovin.nocraftplus.command.*;
-import com.devmclovin.nocraftplus.command.*;
 import com.devmclovin.nocraftplus.listeners.CraftListener;
 import com.devmclovin.nocraftplus.util.Lang;
-import com.devmclovin.nocraftplus.util.Metrics;
+//import com.devmclovin.nocraftplus.util.Metrics;
 import com.devmclovin.nocraftplus.util.UpdateChecker;
-import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,10 +17,12 @@ public class NoCraftPlugin extends JavaPlugin
 {
     private Logger log;
 
-    private List<String> filters;
-    private boolean blacklist;
+    private List<String> recipeFilters;
+    public String recipeMode; // Options: blacklist, whitelist, disabled
 
-    private static NoCraftPlugin plugin;
+    private boolean alert;
+
+    private NoCraftPlugin plugin;
 
     @Override
     public void onEnable()
@@ -43,8 +43,8 @@ public class NoCraftPlugin extends JavaPlugin
         registerCommands();
         registerListeners();
 
-        if (getConfig().getBoolean("enable_metrics"))
-            Metrics.loadMetrics(plugin);
+//        if (getConfig().getBoolean("enable_metrics"))
+//            Metrics.loadMetrics(plugin);
     }
 
     @Override
@@ -56,8 +56,9 @@ public class NoCraftPlugin extends JavaPlugin
     public void loadFilters()
     {
         FileConfiguration config = getConfig();
-        filters = config.getStringList("disabled_items");
-        this.blacklist = config.getBoolean("blacklist");
+        recipeFilters = config.getStringList("recipe.list");
+        recipeFilters.replaceAll(String::toLowerCase);
+        this.recipeMode = config.getString("recipe.mode").toLowerCase();
     }
 
     public void registerListeners()
@@ -68,78 +69,92 @@ public class NoCraftPlugin extends JavaPlugin
 
     public void registerCommands()
     {
-        CommandHandler handler = new CommandHandler();
-
-        handler.register("nocraftplus", new CmdBase(plugin));
-
-        handler.register("add", new CmdAdd(plugin));
-        handler.register("help", new CmdHelp());
-        handler.register("list", new CmdList(plugin));
-        handler.register("reload", new CmdReload(plugin));
-        handler.register("remove", new CmdRemove(plugin));
-        handler.register("toggle", new CmdToggle(plugin));
-
-        getCommand("nocraftplus").setExecutor(handler);
-        getCommand("nocraftplus").setTabCompleter(new NCPTabCompleter());
+        plugin.getCommand("nocraftplus").setExecutor(new CommandHandler(plugin));
     }
 
-    /*
-    API Methods
-     */
-
-    //Get current filter mode
-    //Returns "WHITELIST" or "BLACKLIST"
-    public String getMode()
-    {
-        return this.blacklist ? "BLACKLIST" : "WHITELIST";
+    public boolean alertPlayer(){
+        return alert;
     }
 
-    //Get all current crafting list
-    public List<String> getFilters()
-    {
-        return this.filters;
+    public boolean recipeBlocked(String recipe) {
+        if (recipeMode.equals("disabled")) return true;
+
+        recipe = recipe.toLowerCase();
+        boolean listHas;
+
+        for (String s : recipeFilters) {
+            if (recipe.contains(s)){
+                listHas = true;
+            }
+        }
+
+        switch (recipeMode) {
+            case "blacklist":
+                return true;
+            case "whitelist":
+                return false;
+            default:
+                throw new Error("Invalid recipe mode. Options: Blacklist, Whitelist, Disabled");
+        }
     }
 
-    //Block an item from crafting
-    public void addFilter(Material material)
-    {
-        FileConfiguration config = getConfig();
-        List<String> temp = config.getStringList("disabled_items");
-        temp.add(material.toString());
-        config.set("disabled_items", temp);
-        saveConfig();
-        this.filters.add(material.toString());
-    }
-
-    //Remove a blocked item
-    public void removeFilter(Material material)
-    {
-        FileConfiguration config = getConfig();
-        List<String> temp = config.getStringList("disabled_items");
-        temp.remove(material.toString());
-        config.set("disabled_items", temp);
-        saveConfig();
-        this.filters.remove(material.toString());
-    }
-
-    //Check if a material is blocked
-    public boolean isBlocked(Material type)
-    {
-        boolean hasMat = this.filters.contains(type.toString());
-        return this.blacklist && hasMat || !this.blacklist && !hasMat;
-    }
-
-    //Toggle blacklist mode
-    public void toggleBlacklist()
-    {
-        this.blacklist = !this.blacklist;
-        getConfig().set("blacklist", this.blacklist);
-        saveConfig();
-    }
-
-    //for API
-    public static NoCraftPlugin getNoCraftPlusPlugin()
-    {
-        return plugin;
-    }
+//    /*
+//    API Methods
+//     */
+//
+//    //Get current filter mode
+//    //Returns "WHITELIST" or "BLACKLIST"
+//    public String getMode()
+//    {
+//        return this.blacklist ? "BLACKLIST" : "WHITELIST";
+//    }
+//
+//    //Get all current crafting list
+//    public List<String> getFilters()
+//    {
+//        return this.filters;
+//    }
+//
+//    //Block an item from crafting
+//    public void addFilter(Material material)
+//    {
+//        FileConfiguration config = getConfig();
+//        List<String> temp = config.getStringList("disabled_items");
+//        temp.add(material.toString());
+//        config.set("disabled_items", temp);
+//        saveConfig();
+//        this.filters.add(material.toString());
+//    }
+//
+//    //Remove a blocked item
+//    public void removeFilter(Material material)
+//    {
+//        FileConfiguration config = getConfig();
+//        List<String> temp = config.getStringList("disabled_items");
+//        temp.remove(material.toString());
+//        config.set("disabled_items", temp);
+//        saveConfig();
+//        this.filters.remove(material.toString());
+//    }
+//
+//    //Check if a material is blocked
+//    public boolean isBlocked(Material type)
+//    {
+//        boolean hasMat = this.filters.contains(type.toString());
+//        return this.blacklist && hasMat || !this.blacklist && !hasMat;
+//    }
+//
+//    //Toggle blacklist mode
+//    public void toggleBlacklist()
+//    {
+//        this.blacklist = !this.blacklist;
+//        getConfig().set("blacklist", this.blacklist);
+//        saveConfig();
+//    }
+//
+//    //for API
+//    public static NoCraftPlugin getNoCraftPlusPlugin()
+//    {
+//        return plugin;
+//    }
 }

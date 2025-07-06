@@ -47,43 +47,11 @@ public class UpdateChecker
     public void updateConfig()
     {
         FileConfiguration config = ncp.getConfig();
-        int version = config.getInt("config_version");
-        int temp = version;
-        if (version < 3)
-        {
-            if (!config.isSet("check_for_updates"))
-                config.set("check_for_updates", true);
-            config.set("config_version", 3);
-            version = 3;
+        if (config.contains("config_version")) {
+            plugin.getLogger().severe("When updating to NCP verison 3 a complete config reset is required. Backup current config and remove from plugin directory then restart server.");
+            Bukkit.getPluginManager().disablePlugin(plugin);
         }
-        if (version == 3)
-        {
-            config.set("disable_all", false);
-            config.set("config_version", 4);
-            version = 4;
-        }
-        if (version == 4)
-        {
-            config.set("enable_metrics", true);
-            config.set("config_version", 5);
-            version = 5;
-        }
-        if (version == 5)
-        {
-            config.set("enable-alert", true);
-            config.set("config_version", 6);
-            version = 6;
-        }
-        if (version == 6)
-        {
-            config.set("blacklist", true);
-            config.set("disable_all", null);
-            config.set("config_version", 7);
-            version = 7;
-        }
-        ncp.saveConfig();
-        if (version != temp)
-            plugin.getLogger().info("config.yml updated.");
+            // plugin.getLogger().info("config.yml updated.");
     }
     public static void checkForUpdates(NoCraftPlugin plugin)
     {

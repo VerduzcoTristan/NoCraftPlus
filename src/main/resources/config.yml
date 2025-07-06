@@ -1,24 +1,20 @@
-#Material names can be found here:
-#https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html#enum-constant-summary
-#CaSe SeNsItIvE
-disabled_items:
-  - HOPPER
-  - TNT
-#Enable blacklist mode (false = whitelist)
-blacklist: true
-#Send a message when a player attempts to craft a blocked item
-enable_alert: true
-#Whether or not you want the plugin to
-#Tell you on login when there is an update available
-check_for_updates: true
-#Whether or not you want the plugin to send bStats info.
-#Please consider leaving this true!
-enable_metrics: true
-#TODO Change old logic. Check for updated field instead.
-#config_version: 7
+# Send a message when a player attempts to create a blocked item
+alert: true
+recipe:
+  mode: blacklist
+  # Material names can be found here:
+  # https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html#enum-constant-summary
+  # Any material name containing the listed string will be counted. ex: "pickaxe" will block all pickaxes
+  list:
+    - "wood"
+    - "pickaxe"
 potions:
   # Options: whitelist, blacklist, disable
   mode: blacklist
   list:
     - "HEAL"
     - "REGEN"
+# Should the plugin to tell you on login when there is an update available
+check_for_updates: true
+# Should the plugin to send bStats info.
+enable_metrics: true

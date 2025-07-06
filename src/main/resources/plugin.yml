@@ -1,7 +1,7 @@
 name: NoCraftPlus
 main: com.devmclovin.nocraftplus.NoCraftPlugin
 version: 3.0.0
-api-version: 1.13
+api-version: 1.21
 commands:
   nocraftplus:
     description: Base command.
@@ -11,12 +11,6 @@ permissions:
     children:
       nocraftplus.bypass.*: true
       nocraftplus.command: true
-      nocraftplus.command.add: true
-      nocraftplus.command.help: true
-      nocraftplus.command.list: true
-      nocraftplus.command.reload: true
-      nocraftplus.command.remove: true
-      nocraftplus.command.toggle: true
       nocraftplus.updatecheck: true
   nocraftplus.bypass.*:
     description: Bypass all item filters.
@@ -24,17 +18,5 @@ permissions:
     description: Bypass specific item filter.
   nocraftplus.command:
     description: Access to command.
-  nocraftplus.command.add:
-    description: Add an item filter.
-  nocraftplus.command.help:
-    description: Get help.
-  nocraftplus.command.list:
-    description: List current item filters.
-  nocraftplus.command.reload:
-    description: Reload item filters from config.
-  nocraftplus.command.remove:
-    description: Remove an item filter.
-  nocraftplus.command.toggle:
-    description: Toggle blacklist mode.
   nocraftplus.updatecheck:
     description: Alert when update is available.

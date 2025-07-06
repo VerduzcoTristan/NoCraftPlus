@@ -1,57 +1,52 @@
 package com.devmclovin.nocraftplus.command;
 
+import com.devmclovin.nocraftplus.NoCraftPlugin;
 import com.devmclovin.nocraftplus.util.Lang;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 import java.util.HashMap;
 
-public class CommandHandler implements CommandExecutor
-{
-    private static HashMap<String, CommandInterface> commands = new HashMap<String, CommandInterface>();
+public class CommandHandler implements CommandExecutor {
 
-    public void register(String name, CommandInterface cmd)
-    {
-        commands.put(name, cmd);
-    }
+    private NoCraftPlugin plugin;
 
-    public boolean exists(String name)
-    {
-        return commands.containsKey(name);
-    }
-
-    public CommandInterface getExecutor(String name)
-    {
-        return commands.get(name);
+    public CommandHandler(NoCraftPlugin plugin) {
+        this.plugin = plugin;
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
-    {
-        if (!sender.hasPermission("nocraftplus.command"))
-        {
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (!sender.hasPermission("nocraftplus.command")) {
             sender.sendMessage(Lang.TITLE.toString() + Lang.NO_PERMISSION.toString());
             return true;
         }
-        if (args.length == 0)
-        {
-            getExecutor("nocraftplus").onCommand(sender, args);
-            return true;
+        if (args.length == 0) {
+            msg("&e=======︳&6&lNCP&r&e︳=======", sender);
+            msg("&8Filter modification available in config.yml", sender);
+            msg("&8Reload config: &f/ncp reload", sender);
+            msg("&e=========================", sender);
         }
 
-        if (exists(args[0]))
-        {
-            if (!sender.hasPermission("nocraftplus.command." + args[0].toLowerCase())){
-                sender.sendMessage(Lang.TITLE.toString() + Lang.NO_PERMISSION.toString());
-            } else {
-                getExecutor(args[0]).onCommand(sender, args);
-            }
-        } else
-        {
-            sender.sendMessage(Lang.TITLE.toString() + Lang.INVALID_SUBCOMMAND.toString().replaceAll("%subcmd%", args[0]));
+        if(args[0].equalsIgnoreCase("reload")){
+            plugin.reloadConfig();
+            plugin.loadFilters();
+            Lang.loadLang(plugin);
+
+            sender.sendMessage(Lang.TITLE.toString() + Lang.FILTERS_RELOADED.toString());
         }
+
+        sender.sendMessage(Lang.TITLE.toString() + Lang.INVALID_SUBCOMMAND.toString().replaceAll("%subcmd%", args[0]));
 
         return true;
     }
+
+
+    private void msg(String message, CommandSender sender) {
+        message = ChatColor.translateAlternateColorCodes('&', message);
+        sender.sendMessage(message);
+    }
+
 }

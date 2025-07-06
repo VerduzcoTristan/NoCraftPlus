@@ -19,7 +19,7 @@ public class CraftListener implements Listener
     public CraftListener(NoCraftPlugin plugin)
     {
         this.plugin = plugin;
-        this.alert = plugin.getConfig().getBoolean("enable_alert");
+        this.alert = plugin.alertPlayer();
     }
 
     @EventHandler
@@ -34,10 +34,10 @@ public class CraftListener implements Listener
             Material material = event.getRecipe().getResult().getType();
             String name = material.name();
 
-            //Check whether or not the current recipe is disabled
-            if (plugin.isBlocked(material))
+            //Check whether the current recipe is disabled
+            if (plugin.recipeBlocked(name))
             { //recipe is disabled
-                //Check whether or not the player is allowed to use the current recipe
+                //Check whether the player is allowed to use the current recipe
                 if (!player.hasPermission("nocraftplus.bypass." + name.toLowerCase()) && !player.hasPermission("nocraftplus.bypass.*"))
                 {
                     //Run custom event for API
@@ -50,7 +50,7 @@ public class CraftListener implements Listener
                         event.getInventory().setResult(null);
 
                         if (alert)
-                            player.sendMessage(Lang.TITLE.toString() +
+                            player.sendMessage(Lang.TITLE +
                                     Lang.CRAFTING_DISABLED.toString().replaceAll("%item%", name));
                     }
                 }
