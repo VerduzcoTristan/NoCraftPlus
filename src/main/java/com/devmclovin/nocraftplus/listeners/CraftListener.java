@@ -41,8 +41,8 @@ public class CraftListener implements Listener
                 if (!player.hasPermission("nocraftplus.bypass." + name.toLowerCase()) && !player.hasPermission("nocraftplus.bypass.*"))
                 {
                     //Run custom event for API
-                    BlockedCraftingEvent craftEvent = new BlockedCraftingEvent(event);
-                    Bukkit.getServer().getPluginManager().callEvent(craftEvent);
+//                    BlockedCraftingEvent craftEvent = new BlockedCraftingEvent(event);
+//                    Bukkit.getServer().getPluginManager().callEvent(craftEvent);
 
                     //Check if an external plugin cancelled the event
                     if (!craftEvent.isCancelled())
